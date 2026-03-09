@@ -1,0 +1,242 @@
+{
+    "escalas": [
+        {
+            "Field": "id",
+            "Type": "int(11)",
+            "Null": "NO",
+            "Key": "PRI",
+            "Default": null,
+            "Extra": "auto_increment"
+        },
+        {
+            "Field": "nome",
+            "Type": "varchar(100)",
+            "Null": "NO",
+            "Key": "",
+            "Default": null,
+            "Extra": ""
+        },
+        {
+            "Field": "dias_trabalho",
+            "Type": "varchar(100)",
+            "Null": "NO",
+            "Key": "",
+            "Default": null,
+            "Extra": ""
+        },
+        {
+            "Field": "hora_entrada",
+            "Type": "time",
+            "Null": "NO",
+            "Key": "",
+            "Default": null,
+            "Extra": ""
+        },
+        {
+            "Field": "hora_saida",
+            "Type": "time",
+            "Null": "NO",
+            "Key": "",
+            "Default": null,
+            "Extra": ""
+        },
+        {
+            "Field": "hora_almoco_inicio",
+            "Type": "time",
+            "Null": "YES",
+            "Key": "",
+            "Default": null,
+            "Extra": ""
+        },
+        {
+            "Field": "hora_almoco_fim",
+            "Type": "time",
+            "Null": "YES",
+            "Key": "",
+            "Default": null,
+            "Extra": ""
+        },
+        {
+            "Field": "criado_em",
+            "Type": "timestamp",
+            "Null": "NO",
+            "Key": "",
+            "Default": "current_timestamp()",
+            "Extra": ""
+        }
+    ],
+    "registros_ponto": [
+        {
+            "Field": "id",
+            "Type": "int(11)",
+            "Null": "NO",
+            "Key": "PRI",
+            "Default": null,
+            "Extra": "auto_increment"
+        },
+        {
+            "Field": "usuario_id",
+            "Type": "int(11)",
+            "Null": "NO",
+            "Key": "MUL",
+            "Default": null,
+            "Extra": ""
+        },
+        {
+            "Field": "tipo",
+            "Type": "enum('entrada','saida_almoco','retorno_almoco','saida')",
+            "Null": "NO",
+            "Key": "",
+            "Default": null,
+            "Extra": ""
+        },
+        {
+            "Field": "data_hora",
+            "Type": "datetime",
+            "Null": "NO",
+            "Key": "",
+            "Default": null,
+            "Extra": ""
+        }
+    ],
+    "solicitacoes": [
+        {
+            "Field": "id",
+            "Type": "int(11)",
+            "Null": "NO",
+            "Key": "PRI",
+            "Default": null,
+            "Extra": "auto_increment"
+        },
+        {
+            "Field": "usuario_id",
+            "Type": "int(11)",
+            "Null": "NO",
+            "Key": "MUL",
+            "Default": null,
+            "Extra": ""
+        },
+        {
+            "Field": "tipo",
+            "Type": "enum('ferias','atestado','banco_horas','outro')",
+            "Null": "NO",
+            "Key": "",
+            "Default": null,
+            "Extra": ""
+        },
+        {
+            "Field": "descricao",
+            "Type": "text",
+            "Null": "NO",
+            "Key": "",
+            "Default": null,
+            "Extra": ""
+        },
+        {
+            "Field": "data_solicitacao",
+            "Type": "timestamp",
+            "Null": "NO",
+            "Key": "",
+            "Default": "current_timestamp()",
+            "Extra": ""
+        },
+        {
+            "Field": "status",
+            "Type": "enum('pendente','aprovada','recusada')",
+            "Null": "YES",
+            "Key": "",
+            "Default": "pendente",
+            "Extra": ""
+        },
+        {
+            "Field": "solicitada_em",
+            "Type": "datetime",
+            "Null": "YES",
+            "Key": "",
+            "Default": "current_timestamp()",
+            "Extra": ""
+        }
+    ],
+    "usuarios": [
+        {
+            "Field": "id",
+            "Type": "int(11)",
+            "Null": "NO",
+            "Key": "PRI",
+            "Default": null,
+            "Extra": "auto_increment"
+        },
+        {
+            "Field": "nome",
+            "Type": "varchar(100)",
+            "Null": "NO",
+            "Key": "",
+            "Default": null,
+            "Extra": ""
+        },
+        {
+            "Field": "email",
+            "Type": "varchar(100)",
+            "Null": "NO",
+            "Key": "UNI",
+            "Default": null,
+            "Extra": ""
+        },
+        {
+            "Field": "senha",
+            "Type": "varchar(255)",
+            "Null": "NO",
+            "Key": "",
+            "Default": null,
+            "Extra": ""
+        },
+        {
+            "Field": "nivel_acesso",
+            "Type": "enum('admin','funcionario')",
+            "Null": "NO",
+            "Key": "",
+            "Default": "funcionario",
+            "Extra": ""
+        },
+        {
+            "Field": "criado_em",
+            "Type": "timestamp",
+            "Null": "NO",
+            "Key": "",
+            "Default": "current_timestamp()",
+            "Extra": ""
+        },
+        {
+            "Field": "cargo",
+            "Type": "varchar(100)",
+            "Null": "YES",
+            "Key": "",
+            "Default": "Empregado",
+            "Extra": ""
+        },
+        {
+            "Field": "permissoes",
+            "Type": "longtext",
+            "Null": "YES",
+            "Key": "",
+            "Default": null,
+            "Extra": ""
+        },
+        {
+            "Field": "escala_id",
+            "Type": "int(11)",
+            "Null": "YES",
+            "Key": "MUL",
+            "Default": null,
+            "Extra": ""
+        },
+        {
+            "Field": "status_trabalho",
+            "Type": "enum('Trabalhando','F\u00darias','Afastado')",
+            "Null": "YES",
+            "Key": "",
+            "Default": "Trabalhando",
+            "Extra": ""
+        }
+    ]
+}

@@ -1,0 +1,166 @@
+/* =======================================================
+   login.css
+   ======================================================= */
+
+:root {
+    /* Cores de Fundo */
+    --bg-main: #151821;        /* Azul escuro acinzentado (Fundo da Página) */
+    --bg-card: #1E2330;        /* Card de Login */
+    --bg-input: #12141A;       /* Fundo mais escuro para os inputs */
+    
+    /* Cores de Texto */
+    --text-primary: #FFFFFF;
+    --text-secondary: #A0AEC0; /* Texto secundário (Cinza suave) */
+    
+    /* Cores de Destaque */
+    --accent-blue: #3182CE;
+    --accent-blue-hover: #2B6CB0;
+    
+    /* Detalhes */
+    --border-color: rgba(255, 255, 255, 0.08); /* Linhas divisórias sutis e bordas iniciais */
+    --border-focus: var(--accent-blue);
+    --font-family: 'Inter', sans-serif;
+}
+
+/* RESET E BASE */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* UTILIZANDO FLEXBOX PARA CENTRALIZAR O CARD PERFEITAMENTE */
+body {
+    font-family: var(--font-family);
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1.5rem; /* Margem de segurança em telas pequenas */
+}
+
+/* CARD DE LOGIN (CENTRALIZADO) */
+.login-container {
+    background-color: var(--bg-card);
+    width: 100%;
+    max-width: 420px;
+    padding: 3rem 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); /* Sombra suave para destacar do fundo */
+    border: 1px solid var(--border-color);
+}
+
+/* CABEÇALHO DO CARD */
+.login-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.login-logo {
+    max-width: 100%;
+    max-height: 140px; /* Logo aumentada para melhor destaque */
+    object-fit: contain;
+    margin-bottom: 1.5rem;
+}
+
+.login-title {
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    letter-spacing: -0.01em;
+}
+
+/* FORMULÁRIO */
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.input-label {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+/* INPUTS DE EMAIL E SENHA */
+.login-input {
+    width: 100%;
+    background-color: var(--bg-input);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    padding: 0.875rem 1rem;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 0.95rem;
+    outline: none;
+    transition: all 0.2s ease;
+}
+
+.login-input::placeholder {
+    color: rgba(160, 174, 192, 0.4); /* Placeholder super sutil */
+}
+
+.login-input:focus {
+    border-color: var(--border-focus);
+    box-shadow: 0 0 0 3px rgba(49, 130, 206, 0.15); /* Efeito suave de anel no focus */
+}
+
+/* BOTÃO DE SUBMIT (100% W) */
+.btn-login {
+    width: 100%;
+    background-color: var(--accent-blue);
+    color: #FFF;
+    border: none;
+    padding: 1rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-top: 0.5rem;
+}
+
+.btn-login:hover {
+    background-color: var(--accent-blue-hover);
+    transform: translateY(-2px); /* Pequeno lift ao passar o mouse */
+}
+
+.btn-login:active {
+    transform: translateY(0);
+}
+
+/* LINK INFERIOR (ESQUECI A SENHA) */
+.login-footer {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.forgot-password {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.forgot-password:hover {
+    color: var(--accent-blue);
+    text-decoration: underline;
+}
+
+/* RESPONSIVIDADE (MOBILE MENORES) */
+@media (max-width: 480px) {
+    .login-container {
+        padding: 2.5rem 1.5rem;
+    }
+}
