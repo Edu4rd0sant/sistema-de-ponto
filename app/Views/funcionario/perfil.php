@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Perfil - Primus Point</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-slate-900 text-slate-200 font-sans min-h-screen">
+    <div class="flex w-full">
+        <!-- ÁREA LATERAL (SIDEBAR) -->
+        <?php include __DIR__ . '/../../../includes/sidebar_func.php'; ?>
+
+        <!-- ÁREA DE CONTEÚDO PRINCIPAL (MAIN CONTENT) -->
+        <main class="flex-1 lg:ml-64 flex flex-col min-h-screen relative overflow-hidden">
+            <!-- Fundo decorativo sutil -->
+            <div class="absolute bottom-0 right-0 w-96 h-96 bg-blue-900/10 blur-[100px] rounded-full pointer-events-none z-0"></div>
+
+            <!-- HEADER -->
+            <?php include __DIR__ . '/../../../includes/header_func.php'; ?>
+
+            <div class="p-8 pb-12 flex-1 relative z-10 flex flex-col items-center">
+                
+                <div class="w-full max-w-4xl bg-slate-800/80 backdrop-blur-xl border border-slate-700/50 rounded-2xl p-8 shadow-2xl mt-4 relative overflow-hidden">
+                    
+                    <?php if($perfil): ?>
+                        <!-- Header do Perfil -->
+                        <div class="flex flex-col md:flex-row items-center md:items-start gap-6 mb-10 pb-8 border-b border-slate-700/50 relative z-10">
+                            <!-- Avatar Funcionário -->
+                            <div class="w-24 h-24 rounded-full bg-blue-600 flex items-center justify-center text-4xl font-bold text-white shadow-[0_0_0_4px_rgba(15,23,42,1),0_0_0_6px_rgba(51,65,85,1)] shrink-0">
+                                <?php echo strtoupper(substr($perfil['nome'], 0, 2)); ?>
+                            </div>
+                            
+                            <div class="text-center md:text-left mt-2 flex-1">
+                                <h2 class="text-2xl font-bold text-white tracking-tight leading-tight"><?php echo htmlspecialchars($perfil['nome']); ?></h2>
+                                <div class="inline-flex items-center gap-1.5 bg-blue-500/10 text-blue-400 border border-blue-500/20 px-2.5 py-1 rounded-full text-xs font-semibold mt-2">
+                                    <i class="ph ph-identification-badge text-sm"></i> Colaborador Nível Padrão
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Grid de Infos -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 relative z-10">
+                            <!-- E-mail -->
+                            <div class="bg-slate-900/40 border border-slate-700/50 p-5 rounded-xl hover:bg-slate-800 transition-colors">
+                                <span class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2 flex items-center gap-2"><i class="ph ph-envelope-simple text-slate-500"></i> E-mail Corporativo</span>
+                                <span class="text-base font-medium text-slate-200"><?php echo htmlspecialchars($perfil['email']); ?></span>
+                            </div>
+                            
+                            <!-- Admissão -->
+                            <div class="bg-slate-900/40 border border-slate-700/50 p-5 rounded-xl hover:bg-slate-800 transition-colors">
+                                <span class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2 flex items-center gap-2"><i class="ph ph-calendar text-slate-500"></i> Data de Admissão</span>
+                                <span class="text-base font-medium text-slate-200">
+                                    <?php 
+                                        $data_criacao = new DateTime($perfil['criado_em']);
+                                        echo $data_criacao->format('d/m/Y');
+                                    ?>
+                                </span>
+                            </div>
+
+                            <!-- Matrícula -->
+                            <div class="bg-slate-900/40 border border-slate-700/50 p-5 rounded-xl hover:bg-slate-800 transition-colors">
+                                <span class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2 flex items-center gap-2"><i class="ph ph-barcode text-slate-500"></i> Matrícula do Sistema</span>
+                                <span class="text-base font-mono text-slate-300">#<?php echo str_pad($_SESSION['usuario_id'], 6, "0", STR_PAD_LEFT); ?></span>
+                            </div>
+
+                            <!-- Status -->
+                            <div class="bg-slate-900/40 border border-slate-700/50 p-5 rounded-xl hover:bg-slate-800 transition-colors">
+                                <span class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2 flex items-center gap-2"><i class="ph ph-pulse text-slate-500"></i> Status da Conta</span>
+                                <span class="text-base font-medium text-emerald-400 flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Ativa</span>
+                            </div>
+                        </div>
+
+                        <!-- Ações -->
+                        <div class="mt-10 pt-6 border-t border-slate-700/50 flex flex-col sm:flex-row justify-between items-center gap-4 relative z-10">
+                            <p class="text-slate-400 text-sm italic"><i class="ph ph-info mr-1"></i> Para atualizar outras informações pessoais, contate o RH.</p>
+                            <button onclick="abrirModalSenha()" class="px-5 py-2.5 text-sm font-medium text-slate-300 border border-slate-600 rounded-lg hover:bg-slate-700 hover:text-white transition-colors flex items-center gap-2 shrink-0">
+                                <i class="ph ph-key"></i> Alterar Minha Senha
+                            </button>
+                        </div>
+
+                    <?php else: ?>
+                        <div class="flex items-center justify-center p-12 text-red-400 bg-red-900/20 rounded-xl border border-red-500/20">
+                            <i class="ph ph-warning-circle text-2xl mr-3"></i>
+                            <span class="font-medium"><?php echo $erro_db ?? 'Erro desconhecido ao carregar perfil.'; ?></span>
+                        </div>
+                    <?php endif; ?>
+                </div>
+            </div>
+
+            <!-- MODAL ALTERAR SENHA (TAILWIND) -->
+            <div id="modalSenhaSelf" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-[100] items-center justify-center p-4 hidden opacity-0 transition-opacity duration-300">
+                <div class="bg-slate-800 border border-slate-700 w-full max-w-md rounded-2xl shadow-2xl overflow-hidden transform scale-95 transition-transform duration-300 modal-content-anim flex flex-col max-h-[90vh]">
+                    <div class="px-6 py-4 border-b border-slate-700/50 flex justify-between items-center bg-slate-800 shrink-0">
+                        <h2 class="text-lg font-semibold text-white">Alterar Senha de Acesso</h2>
+                        <button onclick="fecharModalSenha()" class="text-slate-400 hover:text-red-400 transition-colors"><i class="ph ph-x text-xl"></i></button>
+                    </div>
+                    
+                    <form action="/perfil/senha/alterar" method="POST" id="formSenhaSelf" class="p-6 overflow-y-auto">
+                        
+                        <?php if(isset($_GET['erro']) && $_GET['erro'] == 'senha_atual_incorreta'): ?>
+                            <div class="bg-red-500/10 text-red-400 border border-red-500/20 px-4 py-3 rounded-lg mb-6 text-sm flex items-start gap-3">
+                                <i class="ph ph-warning-circle text-lg mt-0.5"></i>
+                                <span>A senha atual informada não confere.</span>
+                            </div>
+                        <?php endif; ?>
+                        <?php if(isset($_GET['sucesso']) && $_GET['sucesso'] == 'senha_alterada'): ?>
+                            <div class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-4 py-3 rounded-lg mb-6 text-sm flex items-start gap-3">
+                                <i class="ph ph-check-circle text-lg mt-0.5"></i>
+                                <span>Sua senha foi alterada com sucesso!</span>
+                            </div>
+                        <?php endif; ?>
+
+                        <div class="mb-6">
+                            <label for="nova_senha" class="block text-sm font-medium text-slate-300 mb-1.5 flex justify-between">
+                                Nova Senha <span class="text-slate-500 text-xs font-normal">Mín. 6 caracteres</span>
+                            </label>
+                            <input type="password" id="nova_senha" name="nova_senha" required minlength="6" class="w-full bg-slate-900/50 border border-slate-700 rounded-lg px-3 py-2 text-slate-200 focus:outline-none focus:border-blue-500 transition-colors text-sm placeholder:text-slate-600">
+                        </div>
+
+                        <div class="flex justify-end gap-3">
+                            <button type="button" onclick="fecharModalSenha()" class="px-4 py-2 text-sm font-medium text-slate-300 border border-slate-600 rounded-lg hover:bg-slate-700 hover:text-white transition-colors">Cancelar</button>
+                            <button type="submit" class="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-500 transition-colors shadow-lg shadow-blue-500/20 flex items-center gap-2">
+                                <i class="ph ph-check"></i> Salvar Nova Senha
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <script>
+                function abrirModalSenha() {
+                    const modal = document.getElementById('modalSenhaSelf');
+                    const content = modal.querySelector('.modal-content-anim');
+                    modal.classList.remove('hidden');
+                    setTimeout(() => {
+                        modal.classList.remove('opacity-0');
+                        content.classList.remove('scale-95');
+                        content.classList.add('scale-100');
+                    }, 10);
+                }
+
+                function fecharModalSenha() {
+                    const modal = document.getElementById('modalSenhaSelf');
+                    const content = modal.querySelector('.modal-content-anim');
+                    modal.classList.add('opacity-0');
+                    content.classList.remove('scale-100');
+                    content.classList.add('scale-95');
+                    
+                    setTimeout(() => {
+                        modal.classList.add('hidden');
+                        document.getElementById('formSenhaSelf').reset();
+                    }, 300);
+                }
+
+                window.onload = function() {
+                    const urlParams = new URLSearchParams(window.location.search);
+                    if(urlParams.has('erro') || urlParams.has('sucesso')) {
+                        abrirModalSenha();
+                    }
+                };
+            </script>
+        </main>
+    </div>
+</body>
+</html>
+
+
+
+

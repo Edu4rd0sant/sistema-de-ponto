@@ -1,0 +1,37 @@
+{
+  "name": "Primus Point",
+  "short_name": "Primus",
+  "description": "Sistema de Gestão de Ponto Primus",
+  "start_url": "/sistemadeponto/index.php",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#2563eb",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Registrar Ponto",
+      "short_name": "Registrar",
+      "description": "Bater ponto agora",
+      "url": "index.php?action=register",
+      "icons": [{ "src": "icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Ver Histórico",
+      "short_name": "Histórico",
+      "description": "Ver meus registros",
+      "url": "historico.php",
+      "icons": [{ "src": "icon-192.png", "sizes": "192x192" }]
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 <?php
-require_once __DIR__ . '/config/session.php';
-require_once __DIR__ . '/config/database.php';
+require_once __DIR__ . '/../config/session.php';
+require_once __DIR__ . '/../config/database.php';
 
 // Apenas Admin pode ver
 if (!isset($_SESSION['logado']) || $_SESSION['nivel_acesso'] !== 'admin') {

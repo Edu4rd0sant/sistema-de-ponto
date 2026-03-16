@@ -1,0 +1,22 @@
+<?php
+// Teste local do MVC
+
+$url = 'http://localhost:8000/public/index.php/api/ponto/registrar';
+
+// Primeiro precisamos de uma sessão válida.
+// Como não temos como forçar a sessão via cURL facilmente sem cookie, vamos
+// fazer um mock na Controller para esse teste rápido se não houver cookie.
+// Mas para manter a originalidade, vamos simular via POST JSON.
+
+// Crie payload JS puro para o usuário rodar no console do browser logado:
+/*
+fetch('http://localhost:8000/public/index.php/api/ponto/registrar', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+        latitude: -23.55052,
+        longitude: -46.633308,
+        foto: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII='
+    })
+}).then(r => r.json()).then(console.log);
+*/

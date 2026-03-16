@@ -1,0 +1,11 @@
+RewriteEngine On
+
+# Impede listagem de diretório
+Options -Indexes
+
+# Se o arquivo ou diretório existir de fato, serve ele diretamente
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Caso contrário, redireciona o tráfego para a nova pasta public/index.php (Front Controller)
+RewriteRule ^(.*)$ public/index.php?url=$1 [QSA,L]

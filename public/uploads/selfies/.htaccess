@@ -1,0 +1,6 @@
+# Desabilita completamente a listagem de diretórios
+Options -Indexes
+
+# Nega o acesso HTTP direto no Apache para processamento normal de requisição
+Order Allow,Deny
+Deny from all
